@@ -1,0 +1,204 @@
+<!doctype html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Module 2 — повторение за 30 минут</title>
+<style>
+:root{
+  --bg:#f5f3ee; --card:#fff; --ink:#202124; --muted:#6b6b6b;
+  --accent:#4d6fff; --accent2:#e9edff; --ok:#218739; --bad:#c73535;
+  --line:#ddd9d0; --shadow:0 8px 24px rgba(0,0,0,.07);
+}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:Arial,sans-serif;line-height:1.45}
+header{position:sticky;top:0;z-index:10;background:rgba(245,243,238,.96);backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
+.top{max-width:1050px;margin:auto;padding:14px 20px;display:flex;align-items:center;justify-content:space-between;gap:15px}
+h1{font-size:22px;margin:0}.sub{font-size:13px;color:var(--muted)}
+.timer{font-size:20px;font-weight:800;background:#fff;border:1px solid var(--line);padding:8px 14px;border-radius:12px;min-width:88px;text-align:center}
+main{max-width:1050px;margin:28px auto;padding:0 20px 60px}
+.intro{background:var(--card);padding:22px;border-radius:18px;box-shadow:var(--shadow);margin-bottom:18px}
+.progress{height:8px;background:#e3e1db;border-radius:99px;overflow:hidden;margin-top:14px}
+.bar{height:100%;width:0;background:var(--accent);transition:.3s}
+.task{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:22px;margin:18px 0;box-shadow:var(--shadow)}
+.task h2{font-size:18px;margin:0 0 5px}.time{font-size:12px;color:var(--muted);margin-bottom:15px}
+.q{padding:12px 0;border-top:1px solid #eee}.q:first-of-type{border-top:0}
+button,.opt,input,select{font:inherit}
+button{border:0;border-radius:10px;padding:10px 15px;cursor:pointer;background:var(--accent);color:white;font-weight:700}
+button.secondary{background:#eee;color:var(--ink)}
+button.small{padding:7px 11px;font-size:13px}
+.options{display:flex;flex-wrap:wrap;gap:8px;margin-top:8px}
+.opt{background:#f0f1f5;color:var(--ink);border:1px solid #ddd;padding:8px 12px;border-radius:10px;cursor:pointer}
+.opt.selected{background:var(--accent2);border-color:var(--accent);color:#2847c7;font-weight:700}
+input[type=text],select{border:1px solid #cfcac0;border-radius:8px;padding:7px 9px;background:#fff;max-width:180px}
+.feedback{font-size:13px;margin-top:8px;min-height:18px}.correct{color:var(--ok);font-weight:700}.wrong{color:var(--bad);font-weight:700}
+.wordbank{background:#f7f6f2;padding:10px;border-radius:10px;font-size:13px;color:#555;margin-bottom:10px}
+.grid{display:grid;grid-template-columns:repeat(2,1fr);gap:10px}
+.result{display:none;background:var(--card);padding:24px;border-radius:18px;box-shadow:var(--shadow);text-align:center;margin-top:20px}
+.big{font-size:42px;font-weight:800}.note{color:var(--muted)}
+.badge{display:inline-block;background:#eef0ff;color:#304fc9;border-radius:99px;padding:5px 9px;font-size:12px;font-weight:700}
+@media(max-width:700px){.grid{grid-template-columns:1fr}.top{align-items:flex-start}.timer{font-size:17px}}
+</style>
+</head>
+<body>
+<header>
+  <div class="top">
+    <div><h1>Module 2 · Revision</h1><div class="sub">30 минут · Лексика + грамматика + to be</div></div>
+    <div class="timer" id="timer">30:00</div>
+  </div>
+</header>
+
+<main>
+<section class="intro">
+  <span class="badge">MISSION: повторить Module 2</span>
+  <p style="margin-bottom:0">Работай самостоятельно. Нажимай <b>Check</b> после каждого блока. В конце получишь результат.</p>
+  <div class="progress"><div class="bar" id="bar"></div></div>
+</section>
+
+<section class="task" data-task>
+<h2>1. Calendar check 📅</h2><div class="time">≈ 4 минуты · дни недели, месяцы, времена года</div>
+<div class="q">1) Monday → следующий день: <select data-answer="tuesday"><option></option><option>Monday</option><option>Tuesday</option><option>Wednesday</option></select></div>
+<div class="q">2) December is in: <select data-answer="winter"><option></option><option>spring</option><option>summer</option><option>autumn</option><option>winter</option></select></div>
+<div class="q">3) The month before August is <input data-answer="july" type="text">.</div>
+<div class="q">4) Wednesday is between Tuesday and <input data-answer="thursday" type="text">.</div>
+<button class="small" onclick="checkBlock(this)">Check</button><div class="feedback"></div>
+</section>
+
+<section class="task" data-task>
+<h2>2. What time is it? ⏰</h2><div class="time">≈ 4 минуты · время + at/in/on</div>
+<div class="q">1) 7:00 = <input data-answer="seven o'clock" type="text"></div>
+<div class="q">2) 8:30 = <input data-answer="half past eight" type="text"></div>
+<div class="q">3) We have English <select data-answer="at"><option></option><option>at</option><option>in</option><option>on</option></select> 5 o'clock.</div>
+<div class="q">4) My birthday is <select data-answer="in"><option></option><option>at</option><option>in</option><option>on</option></select> May.</div>
+<div class="q">5) We don't have school <select data-answer="on"><option></option><option>at</option><option>in</option><option>on</option></select> Sunday.</div>
+<button class="small" onclick="checkBlock(this)">Check</button><div class="feedback"></div>
+</section>
+
+<section class="task" data-task>
+<h2>3. Room detective 🪑</h2><div class="time">≈ 4 минуты · мебель + предлоги места</div>
+<div class="wordbank"><b>Word bank:</b> sofa · table · chair · bed · wardrobe · lamp · bookcase</div>
+<div class="q">1) You sleep on a <input data-answer="bed" type="text">.</div>
+<div class="q">2) You sit on a <input data-answer="chair" type="text">.</div>
+<div class="q">3) You keep clothes in a <input data-answer="wardrobe" type="text">.</div>
+<div class="q">4) The lamp is ___ the table. <select data-answer="on"><option></option><option>on</option><option>under</option><option>between</option><option>next to</option></select></div>
+<div class="q">5) The chair is ___ the table. <select data-answer="next to"><option></option><option>on</option><option>under</option><option>next to</option><option>in</option></select></div>
+<button class="small" onclick="checkBlock(this)">Check</button><div class="feedback"></div>
+</section>
+
+<section class="task" data-task>
+<h2>4. There is / There are 🏠</h2><div class="time">≈ 4 минуты · конструкция + some/any</div>
+<div class="q">1) ___ a sofa in the living room. <select data-answer="there is"><option></option><option>There is</option><option>There are</option></select></div>
+<div class="q">2) ___ two chairs in the kitchen. <select data-answer="there are"><option></option><option>There is</option><option>There are</option></select></div>
+<div class="q">3) There ___ a TV in my bedroom. <select data-answer="is"><option></option><option>is</option><option>are</option></select></div>
+<div class="q">4) There ___ three books on the desk. <select data-answer="are"><option></option><option>is</option><option>are</option></select></div>
+<div class="q">5) There are ___ books on the table. <select data-answer="some"><option></option><option>some</option><option>any</option></select></div>
+<div class="q">6) Are there ___ chairs in the room? <select data-answer="any"><option></option><option>some</option><option>any</option></select></div>
+<button class="small" onclick="checkBlock(this)">Check</button><div class="feedback"></div>
+</section>
+
+<section class="task" data-task>
+<h2>5. Some / any / something / anything</h2><div class="time">≈ 4 минуты · неопределённые местоимения</div>
+<div class="q">1) I have ___ money in my bag. <select data-answer="some"><option></option><option>some</option><option>any</option><option>anything</option></select></div>
+<div class="q">2) I don't have ___ money. <select data-answer="any"><option></option><option>some</option><option>any</option><option>something</option></select></div>
+<div class="q">3) There is ___ interesting in this shop. <select data-answer="something"><option></option><option>something</option><option>anything</option><option>any</option></select></div>
+<div class="q">4) Is there ___ you want to buy? <select data-answer="anything"><option></option><option>something</option><option>anything</option><option>some</option></select></div>
+<div class="q">5) I need ___ new for my room. <select data-answer="something"><option></option><option>something</option><option>anything</option><option>any</option></select></div>
+<button class="small" onclick="checkBlock(this)">Check</button><div class="feedback"></div>
+</section>
+
+<section class="task" data-task>
+<h2>6. TO BE — am / is / are</h2><div class="time">≈ 5 минут · утвердительные, отрицательные и вопросы</div>
+<div class="q">1) I ___ at home. <select data-answer="am"><option></option><option>am</option><option>is</option><option>are</option></select></div>
+<div class="q">2) My parents ___ in the shop. <select data-answer="are"><option></option><option>am</option><option>is</option><option>are</option></select></div>
+<div class="q">3) She ___ not at school today. <select data-answer="is"><option></option><option>am</option><option>is</option><option>are</option></select></div>
+<div class="q">4) We ___ not late. <select data-answer="are"><option></option><option>am</option><option>is</option><option>are</option></select></div>
+<div class="q">5) ___ he your brother? <select data-answer="is"><option></option><option>Am</option><option>Is</option><option>Are</option></select></div>
+<div class="q">6) ___ you at home? <select data-answer="are"><option></option><option>Am</option><option>Is</option><option>Are</option></select></div>
+<div class="q">7) Make a negative sentence: <b>There is a shop near my house.</b><br>
+<input data-answer="there isn't a shop near my house" type="text" style="width:100%;max-width:430px;margin-top:7px" placeholder="There isn't ..."></div>
+<button class="small" onclick="checkBlock(this)">Check</button><div class="feedback"></div>
+</section>
+
+<section class="task" data-task>
+<h2>7. Final challenge — complete the mini-dialogue 💬</h2><div class="time">≈ 5 минут · всё вместе</div>
+<p><b>Emma:</b> Hi! Where ___ you now?</p>
+<select data-answer="are"><option></option><option>am</option><option>is</option><option>are</option></select>
+<p><b>Tom:</b> I ___ in the shopping centre. There ___ two shops here. One shop is ___ the café.</p>
+<div class="grid">
+<select data-answer="am"><option></option><option>am</option><option>is</option><option>are</option></select>
+<select data-answer="are"><option></option><option>am</option><option>is</option><option>are</option></select>
+<select data-answer="next to"><option></option><option>under</option><option>next to</option><option>in</option></select>
+</div>
+<p><b>Emma:</b> Nice! Is there ___ good in the café?</p>
+<select data-answer="anything"><option></option><option>something</option><option>anything</option><option>any</option></select>
+<p><b>Tom:</b> Yes, there is ___ cake. Let's go!</p>
+<select data-answer="some"><option></option><option>some</option><option>any</option><option>anything</option></select>
+<br><br>
+<button class="small" onclick="checkBlock(this)">Check</button><div class="feedback"></div>
+</section>
+
+<div style="display:flex;gap:10px;justify-content:center;margin-top:22px">
+<button onclick="finish()">Show final result</button>
+<button class="secondary" onclick="location.reload()">Restart</button>
+</div>
+
+<section class="result" id="result">
+<div class="note">RESULT</div>
+<div class="big" id="score">0%</div>
+<p id="resultText"></p>
+<p class="note">Для педагога: отдельно обрати внимание на ошибки в <b>to be</b>, <b>some/any</b> и <b>there is/are</b>.</p>
+</section>
+</main>
+
+<script>
+let seconds=1800, timerStarted=true, checked=0, total=0, earned=0;
+const timerEl=document.getElementById('timer');
+function tick(){
+  if(seconds>0){seconds--; let m=Math.floor(seconds/60),s=seconds%60;
+    timerEl.textContent=String(m).padStart(2,'0')+':'+String(s).padStart(2,'0');
+  } else {timerEl.textContent='TIME';}
+}
+setInterval(tick,1000);
+
+function norm(x){
+ return x.toLowerCase().trim().replace(/[.!?]/g,'').replace(/\s+/g,' ');
+}
+function checkBlock(btn){
+ const task=btn.closest('[data-task]');
+ const fields=[...task.querySelectorAll('[data-answer]')];
+ let ok=0;
+ fields.forEach(f=>{
+   total++;
+   const ans=norm(f.value||'');
+   const expected=norm(f.dataset.answer);
+   const good=ans===expected;
+   if(good) ok++;
+   f.style.borderColor=good?'#218739':'#c73535';
+ });
+ const fb=task.querySelector('.feedback');
+ fb.innerHTML=`<span class="${ok===fields.length?'correct':'wrong'}">${ok} / ${fields.length} правильно</span>`;
+ earned += ok;
+ checked++;
+ updateProgress();
+}
+function updateProgress(){
+ const tasks=document.querySelectorAll('[data-task]').length;
+ document.getElementById('bar').style.width=Math.min(100,(checked/tasks)*100)+'%';
+}
+function finish(){
+ const result=document.getElementById('result');
+ let percent=total?Math.round(earned/total*100):0;
+ document.getElementById('score').textContent=percent+'%';
+ let text='';
+ if(checked===0) text='Сначала выполни задания и нажми Check. Потом смотри итог.';
+ else if(percent>=90) text='Отлично. Module 2 хорошо закреплён. Можно переходить к более свободной практике.';
+ else if(percent>=75) text='Хороший результат. Повтори места, где были ошибки, и составь по 2 своих предложения.';
+ else if(percent>=60) text='База есть, но часть тем ещё нестабильна. Особенно повтори to be и конструкции there is/are.';
+ else text='Нужно ещё раз пройти Module 2 небольшими блоками. Начни с to be → there is/are → some/any.';
+ document.getElementById('resultText').textContent=text;
+ result.style.display='block';
+ result.scrollIntoView({behavior:'smooth'});
+}
+</script>
+</body>
+</html>
